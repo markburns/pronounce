@@ -16,8 +16,6 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'padrino-sprockets', :require => 'padrino/sprockets'
 
 # Component requirements
-gem 'rack-coffee', :require => "rack/coffee"
-gem 'coffee-script'
 gem 'sass'
 gem 'haml'
 
