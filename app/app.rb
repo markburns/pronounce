@@ -1,5 +1,4 @@
 class Pronounce < Padrino::Application
-  register CoffeeInitializer
   register SassInitializer
   register Padrino::Rendering
   register Padrino::Mailer
