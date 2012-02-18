@@ -40,9 +40,29 @@ class Word
     "<Word #{@query}: #{definition} mp3:#{mp3?}>"
   end
 
+  def american_pronunciation
+    path = entry["multimedia"].detect{|w| w["@type"]=="US_PRON"}["@href"]
+  end
+
+  def british_pronunciation
+    path = entry["multimedia"].detect{|w| w["@type"]=="GB_PRON"}["@href"]
+  end
+
+  def american
+    american_pronunciation
+  end
+
+  def british
+    british_pronunciation
+  end
+
+  def correct_pronunciation
+    british_pronunciation
+  end
+
   def mp3_url
-    path = entry["multimedia"].first["@href"]
-    url = "https://api.pearson.com/longman/dictionary/#{path}?apikey=#{Word.api_key}"
+    pronunciation = british || american
+    url = "https://api.pearson.com/longman/dictionary/#{pronunciation}?apikey=#{Word.api_key}"
   rescue
     nil
   end
@@ -50,8 +70,8 @@ class Word
 
   private
 
-  def filename
-    "tmp/#{query}.mp3"
+  def filename lang="british"
+    "tmp/#{lang}_#{query}.mp3"
   end
 
   class << self
@@ -72,7 +92,5 @@ class Word
       #"&jsonp={jsonp_callback}"
       "https://api.pearson.com/longman/dictionary/entry.json?q=#{query}&apikey=#{api_key}"
     end
-
-
   end
 end

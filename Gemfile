@@ -6,8 +6,6 @@ group :development do
   gem 'ruby-debug19'
 end
 
-gem 'pusher'
-
 # Server requirements (defaults to WEBrick)
 # gem 'thin'
 # gem 'mongrel'

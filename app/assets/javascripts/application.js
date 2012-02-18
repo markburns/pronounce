@@ -11,16 +11,16 @@ $(function(){
   function play(data){
     console.log(data);
     url = data.mp3_url;
-    if(url){
-      console.log(url);
+    if(typeof(url)== 'string'){
 
       audioElement.setAttribute('src', url);
       audioElement.play();
       definition(data);
+      return true;
     }
-    else{
-      definition("Sorry, no audio for: " + data);
-    }
+
+    definition("Sorry, no audio for: " + data);
+    return false;
   }
 
   function definition(word){
