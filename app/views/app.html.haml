@@ -1,5 +1,4 @@
 - form_tag 'words', id: "word_form", :method => 'get'  do
-  How do I pronounce:
   = text_field_tag 'word', :value => params[:word], id: 'word_field'
   = submit_tag 'Pronunce'
 
