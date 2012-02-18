@@ -1,0 +1,9 @@
+:javascript
+  $(function(){
+  });
+
+- form_tag 'words', :method => 'get'  do
+  How do I pronounce:
+  = text_field_tag 'word', :value => params[:word]
+  = submit_tag 'Pronunce'
+

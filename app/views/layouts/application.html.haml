@@ -1,0 +1,12 @@
+!!! Strict
+%html
+  %head
+    %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
+    = #stylesheet_link_tag 'reset', 'application'
+    = javascript_include_tag 'jquery', 'application'
+    = yield_content :include
+  %body
+    #header
+      %h1 How do I pronounce?
+    #container
+      #main= yield

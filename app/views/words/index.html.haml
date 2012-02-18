@@ -1,0 +1,7 @@
+= @word.word
+
+= @word.definition
+
+%audio(controls="controls" autoplay=true)
+  %source(src="#{@word.mp3_url}" type="audio/mp3")
+
