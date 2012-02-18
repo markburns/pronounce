@@ -5,6 +5,12 @@ class Pronounce < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
+  # Sprockets support
+  require 'sprockets'
+  register Padrino::Sprockets
+  sprockets
+
+
   enable :sessions
 
   get "/" do

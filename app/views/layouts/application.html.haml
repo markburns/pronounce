@@ -2,8 +2,9 @@
 %html
   %head
     %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
-    = #stylesheet_link_tag 'reset', 'application'
-    = javascript_include_tag 'jquery', 'application'
+    %link(href="/assets/application.css" media="screen" rel="stylesheet" type="text/css")
+    %script(src="/assets/application.js" type="text/javascript")
+
     = yield_content :include
   %body
     #header
