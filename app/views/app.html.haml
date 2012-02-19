@@ -1,7 +1,8 @@
 - form_tag 'words', id: "word_form", :method => 'get'  do
-  = submit_tag 'Pronunce'
+  = submit_tag 'How is "'
   = text_field_tag 'word', :value => params[:word], id: 'word_field'
-%h1 ?
+  = submit_tag '" pronounced?'
+#spinner
 
 #word
 #definition
