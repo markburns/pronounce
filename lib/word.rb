@@ -28,41 +28,51 @@ module Longman
       !!mp3_url
     end
 
-    def entry
-      response["Entries"]["Entry"] rescue {}
+    def entries
+      entries = response["Entries"]
+      entries = entries["Entry"] rescue []
+      arrayify entries
+    end
+
+    def arrayify hash_or_array
+      hash_or_array.is_a?(Hash) ? [hash_or_array] : hash_or_array
+    end
+
+    def each_in hash_or_array
+      arrayify(hash_or_array).map do |el|
+        yield el
+      end
     end
 
     def definition
-      entry["Sense"].first["Subsense"].first["DEF"]["#text"] rescue ""
+      each_in entries  do |entry|
+        each_in entry["Sense"] do |f|
+          if f["DEF"]
+            f["DEF"]["#text"]
+          elsif f["Subsense"]
+            each_in f["Subsense"] do |g|
+              g["DEF"]["#text"]
+            end
+          end
+        end
+      end.flatten.compact
     end
 
     def inspect
       "<Word #{@query}: #{definition} mp3:#{mp3?}>"
     end
 
-    def american_pronunciation
-      path = entry["multimedia"].detect{|w| w["@type"]=="US_PRON"}["@href"]
+    def american_pronunciations
+      entries.map{|e| ["multimedia"].detect{|w| w["@type"]=="US_PRON"}["@href"]}
     end
 
-    def british_pronunciation
-      path = entry["multimedia"].detect{|w| w["@type"]=="GB_PRON"}["@href"]
-    end
-
-    def american
-      american_pronunciation
-    end
-
-    def british
-      british_pronunciation
-    end
-
-    def correct_pronunciation
-      british_pronunciation
+    def british_pronunciations
+      entries.map{|e| e["multimedia"].detect{|w| w["@type"]=="GB_PRON"}["@href"]}
     end
 
     def mp3_url
-      pronunciation = british || american
-      url = "https://api.pearson.com/longman/dictionary/#{pronunciation}?apikey=#{Word.api_key}"
+      pronunciation = british_pronunciations.first || american_pronunciations.first
+      url = "https://api.pearson.com/longman/dictionary#{pronunciation}?apikey=#{Word.api_key}"
     rescue
       nil
     end

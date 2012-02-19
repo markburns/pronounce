@@ -1,12 +1,11 @@
-= @word.word
+=partial 'form'
 
+= @word.word
 = @word.definition
 
 :javascript
   $(function(){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', '#{@word.mp3_url}');
-    audioElement.play();
+    Word.play('#{@word.mp3_url}');
   });
 
 

@@ -89,18 +89,6 @@ Word = {
 };
 
 $(function(){
-  var canvas = document.getElementById('fft');
-  var ctx = canvas.getContext('2d');
-  var channels;
-  var rate;
-  var frameBufferLength;
-  var fft;
-
-    Word.audio.addEventListener('MozAudioAvailable', audioAvailable, false);
-    Word.audio.addEventListener('loadedmetadata', loadedMetadata, false);
-
-
-
   $('#word_form').submit(function(e){
     lookup(e);
   });
