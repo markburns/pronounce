@@ -1,8 +1,11 @@
 - form_tag 'words', id: "word_form", :method => 'get'  do
   = submit_tag 'How is "'
-  = text_field_tag 'word', :value => params[:word], id: 'word_field'
+  = text_field_tag 'word', :value => params[:word], id: 'word_field',
+    autofocus: true
   = submit_tag '" pronounced?'
 #spinner
 
 #word
 #definition
+
+%canvas(id="fft" width="512" height="200")
