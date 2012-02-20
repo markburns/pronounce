@@ -18,6 +18,8 @@ GEM
       multi_json
       multi_xml
     i18n (0.6.0)
+    ldoce (0.0.1)
+      httparty
     linecache19 (0.5.13)
       ruby_core_source (>= 0.1.4)
     mail (2.3.0)
@@ -100,7 +102,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
-  httparty
+  ldoce
   padrino (= 0.10.5)
   padrino-sprockets
   rack-test
