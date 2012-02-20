@@ -1,5 +1,5 @@
 source :rubygems
-gem 'httparty'
+gem 'ldoce'
 
 group :development do
   gem "ruby-debug-base19", "0.11.26"

@@ -1,6 +1,6 @@
 Pronounce.controllers :words do
   get :index do
-    @word = Longman::Word.search(params[:word])
+    @word = Ldoce::Word.search(params[:word])
 
     if request.xhr?
       {mp3_url: @word.mp3_url,
